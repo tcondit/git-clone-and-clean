@@ -5,6 +5,9 @@
 
 # TODO refactor everything (much) later
 
+# Next three
+#
+
 # Next three (big'uns)
 # [done] 1. add configparser and options
 #   - location of template files directory
@@ -19,6 +22,7 @@ import configparser
 import os
 import os.path
 import re
+import subprocess
 import sys
 
 ##
@@ -43,7 +47,7 @@ args = parser.parse_args()
 ## configparser
 ##
 config = configparser.ConfigParser()
-config_file = 'stage_crew.ini'
+config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stage_crew.ini')
 
 config.read(config_file)
 if args.verbose:
@@ -104,12 +108,27 @@ new_title = "-".join(new_title.split())
 story_id = '^\d{5,6}\D'
 if re.search(story_id, new_title):
     try:
-        if args.verbose:
-            #print('creating directory {} from title string "{}"'.format(new_title, original_title))
-            print('creating Git repo {}'.format(new_title))
         os.mkdir(new_title)
+        if args.verbose:
+            print('created directory {} from title string "{}"'.format(new_title, original_title))
     except OSError:
-        print("error: directory already exists")
+        print('error: directory already exists: {}'.format(new_title))
+        # TODO re-raise error here so we exit immediately?
+        #raise
+        sys.exit(1)
 else:
     print("need a 5- or 6-digit story ID and title")
+
+##
+## create the repo
+##
+
+oldcwd = os.path.dirname(os.path.abspath(__file__))
+newcwd = os.chdir(os.path.normpath(os.path.join(oldcwd, new_title)))
+print('newcwd:{}'.format(newcwd))
+
+#mkrepo = subprocess.check_output(["git", "Hello World!"], universal_newlines=True)
+#print(mkrepo)
+if args.verbose:
+    print('creating Git repo {}'.format(new_title))
  
