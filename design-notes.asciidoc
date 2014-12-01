@@ -130,6 +130,24 @@ Initialized empty Git repository in Y:/Repositories/VersionOne/stories/546260­p
  warning: --depth is ignored in local clones; use file:// instead.
  done.
 
+* Just got `hub` working with Enterprise GitHub for the first time
+** NB: I'll probably alias `hub` to `git` like the project page recommends
+** NB: Some details redacted -- not sure if it matters
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS
+ $ GITHUB_HOST=<my.enterprise.org> hub clone --depth 1 --origin TEMPLATE file:///Y:\\Repositories\\VersionOne\\00_TEMPLATE 645889-401k-dbpkg-automated-deployment
+ Cloning into '645889-401k-dbpkg-automated-deployment'...
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS
+ $ cd 645889-401k-dbpkg-automated-deployment/
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS/645889-401k-dbpkg-automated-deployment
+ $ hub create 645889-401k-dbpkg-automated-deployment
+ github.com username: <USERNAME>
+ <my.enterprise.org> password for <USERNAME> (never stored): <PASSWORD>
+ TEMPLATE        file:///Y:\Repositories\VersionOne\00_TEMPLATE (fetch)
+ TEMPLATE        file:///Y:\Repositories\VersionOne\00_TEMPLATE (push)
+ created repository: <USERNAME>/645889-401k-dbpkg-automated-deployment
 
 == Unit testing brainstorm
 *
