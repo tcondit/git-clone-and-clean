@@ -108,7 +108,30 @@ Initialized empty Git repository in Y:/Repositories/VersionOne/stories/546260­p
 ­ Auto­commit and sync to active projects?
 
 
-Unit testing brainstorm
+== Examples
+* Local cloning. This was on Windows in a Cygwin environment.
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS
+ $ git clone --depth 1 --origin TEMPLATE file:///Y:\\Repositories\\VersionOne\\00_TEMPLATE 645889-401k-dbpkg-automated-deployment
+ Cloning into '645889-401k-dbpkg-automated-deployment'...
+
+* Check out the log history. I don't know yet what `(grafted)` means.
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS/645889-401k-dbpkg-automated-deployment
+ $ git lg
+ * 78b151b - (HEAD, TEMPLATE/master, TEMPLATE/HEAD, master) Remove .gitconfig (use .git/config instead) (4 weeks ago) <Tim Condit>
+ * 222fa73 - (grafted) Add a standard title (4 weeks ago) <Tim Condit>
+
+* Here's an earlier one that didn't quite do what I wanted.
+
+ tcondit@WKW7TCONDIT ~/Repositories/VersionOne/02_IN_PROGRESS
+ $ git clone --depth 1 --origin TEMPLATE Y:\\Repositories\\VersionOne\\00_TEMPLATE 645889-401k-dbpkg-automated-deployment
+ Cloning into '645889-401k-dbpkg-automated-deployment'...
+ warning: --depth is ignored in local clones; use file:// instead.
+ done.
+
+
+== Unit testing brainstorm
 *
 
 
