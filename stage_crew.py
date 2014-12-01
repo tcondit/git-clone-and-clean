@@ -107,24 +107,28 @@ new_title = new_title.lower()
 
 # without the \D, allows more than 6 digits at the front
 story_id = '^\d{5,6}\D'
-if re.search(story_id, new_title):
-    new_repo_path = os.path.normpath(os.path.join(GIT_REPO_BASE_DIR, new_title))
-    try:
-        os.mkdir(new_repo_path)
-        if args.verbose:
-            #print('created directory {} from title string "{}"'.format(new_repo_path, original_title))
-            print('created directory {}'.format(new_repo_path))
-    except OSError:
-        print('error: directory already exists: {}'.format(new_repo_path))
-        # TODO re-raise error here so we exit immediately?
-        #raise
-        sys.exit(1)
-else:
+if not re.search(story_id, new_title):
     print("need a 5- or 6-digit story ID and title")
+
+# check that new_repo_path does not exist; write to the directory later, and
+# catch exceptions as they happen; TODO refactor
+new_repo_path = os.path.normpath(os.path.join(GIT_REPO_BASE_DIR, new_title))
+if os.path.isdir(new_repo_path):
+    print('error: directory already exists: {}'.format(new_repo_path))
+    # TODO re-raise error here so we exit immediately?
+    #raise
+    sys.exit(1)
+else:
+
 
 ##
 ## create the repo
 ##
+
+# http://stackoverflow.com/questions/16363460/set-up-a-default-directory-structure-on-git-init
+#
+# Note really sure what the eff this guy did
+# http://kevinthompson.info/blog/2013/11/11/using-git-repos-as-project-templates.html
 
 oldcwd = os.path.dirname(os.path.abspath(__file__))
 #os.chdir(os.path.normpath(os.path.join(oldcwd, new_title)))
