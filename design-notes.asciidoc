@@ -1,92 +1,92 @@
 = Description
-As a story implementer, I would like to quickly create a home for all the
-stuff that goes with a story ­­ design notes, random images, scratchpad
-writings, test request notes, demo notes, etc. It should be quick and easy to
-set up and commit to private Git.
+
+As a story implementer, I would like to quickly create a home for all the stuff
+that goes with a story - design notes, random images, scratchpad writings, test
+request notes, demo notes, etc. It should be quick and easy to set up and
+commit to private Git.
 
 It should be just as quick and easy to close down. When a story is
 done/accepted, I'd also like to have any open or untracked files tidied up
 without delay. This is also when the whole project should be moved to
 ..\accepted.
 
-== Features brainstorm (one per line)
-* **[x]** strip off "B‐" when followed by 5 or 6 digits
-* **[ ]** convert ":" to ... something. Maybe do before whitespace is converted to "‐" and just make it a space.
-* **[ ]** 00_TEMPLATE remote should be pull only
-* **[ ]** Configure 00_TEMPLATE to refuse pushes and disallow pulls from it
-* **[ ]** add configuration for path to template directory
-* **[x]** ?? Can I get the input parser to replace a newline with a dash? That would be really nice when copying off the V1 website.
+== Features brainstorm (one per line, not in priority order yet)
+* [x] strip off "B‐" when followed by 5 or 6 digits
+* [x] convert ":" to ... something. Maybe do before whitespace is converted to "‐" and just make it a space.
+* [x] add configuration for path to template directory
+* [x] ?? Can I get the input parser to replace a newline with a dash? That would be really nice when copying off the V1 website.
 ** YES! Works "out of the box"!
-* **[ ]** the "sync up" option mentioned above is a simple 'git pull' from 00_TEMPLATE
-* **[x]** catch SyntaxError if running stage_crew with Python2. Report it needs Python3.
-* **[x]** add verbose option
+* [x] catch SyntaxError if running stage_crew with Python2. Report it needs Python3.
+* [x] add verbose option
 ** if verbose, report what was done, like "created directory 123456‐my‐shiny‐new‐story‐dir"; else no output
-* **[x]** catch OSError if a directory already exists (reported as file exists)
-* **[ ]** add an interactive option, so I can walk thru creating everything if needed
-** I was originally thinking this would be useful for shortening/changing the directory name, but was also thinking of just adding an alt option, as in ‐‐alt "shorter name"
-** the alt option should be smart enough to reuse the story ID
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]** investigate using GitHub gists for test requests
-* **[ ]** investigate using GitHub gists for team documentation
-* **[ ]** investigate using GitHub gists for other documentation (release * notes, etc.)
-** This would be a move *away* from using Word docs (yay!).
-** Also recall that GitHub works just fine with AsciiDoc. It's better than that in fact, since they drove the development and adoption of AsciiDoctor.
-* **[x]** directories always start with 5 or 6 digit V1 ID
-* **[x]** replace whitespace with dashes
-* **[x]** replace multiple consecutive whitespace with a single dash
-* **[x]** trim trailing whitespace
-* **[ ]** (see **^1** below) empty first commit with timestamp at epoch
-** See 04_GIT.md
-* **[ ]** Use argparse to accept title on the command line
+* [x] catch OSError if a directory already exists (reported as file exists)
+* [x] directories always start with 5 or 6 digit V1 ID
+* [x] replace whitespace with dashes
+* [x] replace multiple consecutive whitespace with a single dash
+* [x] trim trailing whitespace
+* [x] get an account on Git enterprise
+* [x] Use argparse to accept title on the command line
 ** Will probably have to wrap the whole thing in double quotes
-* **[ ]** (see **^2** below) enable format pretty and other config settings
-* **[ ]** clone template repo into the new story dir
+* [x] directory naming: lowercase all words
+* [ ] initialize new Git repo in new story directory
+* [ ] call 'hub create' to initialize the repo on COF GitHub
+* [ ] set up a remote to Git enterprise (origin) (can 'hub' do this?)
+* [ ] push the story bits to the remote
+* [ ] add configuration to set the base directory
+* [ ] add non­interactive option to create story directory
+* [ ] directory naming: remove 'a', 'the', maybe others
+* [ ] Rename V1_ID­Story_Title­DESIGN.docx after repo initialized
+* [ ] Rename V1_ID­Story_Title­qa­checklist.md after repo initialized
+* [ ] Rename V1_ID­Story_Title­RELEASE_NOTES.docx after repo initialized
+* [ ] Add or rename test request file (should be asciidoc)
+* [ ] Add or rename release plan file (should be asciidoc)
+
+* [ ] add an interactive option, so I can walk thru creating everything if needed
+** I was originally thinking this would be useful for shortening/changing the directory name, but was also thinking of just adding an alt option, as in ‐‐alt "shorter name"
+** [ ] make the alt option reuse the story ID
+* [ ] 00_TEMPLATE remote should be pull only
+* [ ] Configure 00_TEMPLATE to refuse pushes and disallow pulls from it
+* [ ] (see **^1** below) empty first commit with timestamp at epoch
+** See 04_GIT.md
+* [ ] (see **^2** below) enable format pretty and other config settings
+* [ ] clone template repo into the new story dir
 ** alternatively, set up a remote as in 'git remote add template <template_URL>' and pull
 ** Actually, do both. But call this remote 00_TEMPLATE or whatever. Remote origin should be at COF GitHub.
-* **[ ]** hard­code path to the template files directory
-* **[ ]** add configuration to set the template files directory
-* **[ ]** consider a "sync up" option to push new template files to current story dirs
-* **[ ]** consider versioning the template files, either collectively or individually
-* **[ ]** hard­code path to base directory where new directories go
-* **[ ]** add configuration to set the base directory
-* **[ ]** add non­interactive option to create story directory
-* **[ ]** initialize new Git repo in new story directory
-* **[x]** get an account on Git enterprise
-* **[ ]** set up a remote to Git enterprise (origin)
-* **[ ]** push the story bits to the remote
-* **[ ]** directory naming: lowercase all words
-* **[ ]** directory naming: remove 'a', 'the', maybe others
-* **[ ]** consider adding full story title for Git commit log
-* **[ ]** consider a STATUS file instead of moving things to accepted/
-* **[ ]** consider an IGNORE option for template files (modeled after .gitignore?)
-* **[ ]** Rename V1_ID­Story_Title­DESIGN.docx after repo initialized
-* **[ ]** Rename V1_ID­Story_Title­qa­checklist.md after repo initialized
-* **[ ]** Rename V1_ID­Story_Title­RELEASE_NOTES.docx after repo initialized
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
-* **[ ]**
+* [ ] consider a "sync up" option to push (or pull?) new template files into current story dirs
+* [ ] consider adding full story title for Git commit log
+* [ ] consider a STATUS file instead of moving things to accepted/
+* [ ] consider an IGNORE option for template files (modeled after .gitignore?)
+* [ ] investigate using GitHub gists for test requests
+* [ ] investigate using GitHub gists for team documentation
+* [ ] investigate using GitHub gists for other documentation (release * notes, etc.)
+** This would be a move *away* from using Word docs (yay!).
+** Also recall that GitHub works just fine with AsciiDoc. It's better than that in fact, since they drove the development and adoption of AsciiDoctor.
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
+* [ ]
 
 
 === Footnotes
