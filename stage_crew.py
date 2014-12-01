@@ -103,16 +103,19 @@ if re.search(leader, new_title):
 new_title = new_title.strip()
 new_title = new_title.replace(":", " ")
 new_title = "-".join(new_title.split())
+new_title = new_title.lower()
 
 # without the \D, allows more than 6 digits at the front
 story_id = '^\d{5,6}\D'
 if re.search(story_id, new_title):
+    new_repo_path = os.path.normpath(os.path.join(GIT_REPO_BASE_DIR, new_title))
     try:
-        os.mkdir(new_title)
+        os.mkdir(new_repo_path)
         if args.verbose:
-            print('created directory {} from title string "{}"'.format(new_title, original_title))
+            #print('created directory {} from title string "{}"'.format(new_repo_path, original_title))
+            print('created directory {}'.format(new_repo_path))
     except OSError:
-        print('error: directory already exists: {}'.format(new_title))
+        print('error: directory already exists: {}'.format(new_repo_path))
         # TODO re-raise error here so we exit immediately?
         #raise
         sys.exit(1)
@@ -124,11 +127,16 @@ else:
 ##
 
 oldcwd = os.path.dirname(os.path.abspath(__file__))
-newcwd = os.chdir(os.path.normpath(os.path.join(oldcwd, new_title)))
-print('newcwd:{}'.format(newcwd))
+#os.chdir(os.path.normpath(os.path.join(oldcwd, new_title)))
+os.chdir(new_repo_path)
+newcwd = os.path.dirname(os.path.abspath(__file__))
+#print('newcwd:{}'.format(newcwd))
 
-#mkrepo = subprocess.check_output(["git", "Hello World!"], universal_newlines=True)
-#print(mkrepo)
+# TODO I want to clone an existing repo here, not create a new one
+mkrepo = subprocess.check_output(["git", "init"], universal_newlines=True)
+print(mkrepo)
 if args.verbose:
-    print('creating Git repo {}'.format(new_title))
+    print('created Git repo {}'.format(new_title))
+
+os.chdir(oldcwd)
  
